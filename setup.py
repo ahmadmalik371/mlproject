@@ -1,7 +1,7 @@
 from setuptools import find_packages,setup
 from typing import List
 
-HYPEN_E_DOT='-e .'
+HYPEN_E_DOT='-e .' # This tells python to install the project itself in "editable" mode.
 def get_requirements(file_path:str)->List[str]:
     '''
     this function will return the list of requirements
