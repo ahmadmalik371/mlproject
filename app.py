@@ -393,7 +393,7 @@ if submit_button:
             results = predict_pipeline.predict(pred_df)
 
             # Extract and format the result (rounding the floating point)
-            final_score = round(results, 2)
+            final_score = round(float(results.ravel()), 2)
 
             # 4. Display modern results panel
             st.markdown(
