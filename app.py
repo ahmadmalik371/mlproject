@@ -390,10 +390,14 @@ if submit_button:
 
             # 3. Initialize pipeline and predict
             predict_pipeline = PredictPipeline()
+            
             results = predict_pipeline.predict(pred_df)
+            final_score = results
+            while hasattr(final_score, "_len_") and not isinstance(final_score, (str, bytes)) and len(final_score) == 1:
+                final_score = final_score
 
             # Extract and format the result (rounding the floating point)
-            final_score = round(float(results.ravel()), 2)
+            final_score = round(float(final_score), 2)
 
             # 4. Display modern results panel
             st.markdown(
