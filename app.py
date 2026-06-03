@@ -16,27 +16,28 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- High-End CSS Styling Framework ---
+# --- Midnight Obsidian CSS Framework ---
 st.markdown(
     """
 <style>
 :root{
-  --bg: #F8FAFC;
-  --card: rgba(255, 255, 255, 0.88);
-  --text: #0F172A;
+  --bg: #070A12;
+  --card: rgba(15, 23, 42, 0.65);
+  --text: #F1F5F9;
   --muted: #64748B;
-  --border: rgba(79, 70, 229, 0.08);
+  --border: rgba(99, 102, 241, 0.15);
 
-  --indigo: #4F46E5;
-  --purple: #7C3AED;
-  --grad: linear-gradient(135deg, #4F46E5, #7C3AED);
+  --indigo: #6366F1;
+  --teal: #14B8A6;
+  --grad: linear-gradient(135deg, #6366F1, #14B8A6);
+  --grad-glow: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(20, 184, 166, 0.1));
 
-  --shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
-  --shadow-hover: 0 30px 60px rgba(79, 70, 229, 0.12);
+  --shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 30px 60px rgba(20, 184, 166, 0.15);
   --radius: 20px;
 }
 
-/* Base Adjustments & Animations */
+/* Force dark theme overrides and stop mobile inversion bugs */
 html, body, p, [class*="css"] {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
   color: var(--text) !important;
@@ -44,16 +45,15 @@ html, body, p, [class*="css"] {
 
 #MainMenu, footer, header {visibility: hidden;}
 
-/* Dynamic Entrance Blending Effect */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .stApp {
-  background: radial-gradient(1000px 600px at 0% 0%, rgba(79, 70, 229, 0.08), transparent 50%),
-              radial-gradient(800px 600px at 100% 100%, rgba(124, 58, 237, 0.08), transparent 50%),
-              linear-gradient(180deg, var(--bg), #FFFFFF);
+  background: radial-gradient(1000px 600px at 0% 0%, rgba(99, 102, 241, 0.12), transparent 50%),
+              radial-gradient(800px 600px at 100% 100%, rgba(20, 184, 166, 0.12), transparent 50%),
+              var(--bg);
   animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -63,10 +63,10 @@ html, body, p, [class*="css"] {
   max-width: 900px;
 }
 
-/* Premium Hero Module with Clip-Paths & Layered Waves */
+/* Premium Obsidian Hero Banner */
 .hero-wrap {
   position: relative;
-  background: linear-gradient(135deg, rgba(79,70,229,0.08), rgba(124,58,237,0.05));
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.5));
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2.2rem 2.2rem 4.5rem 2.2rem;
@@ -84,7 +84,7 @@ html, body, p, [class*="css"] {
   z-index: 5;
 }
 
-/* Advanced Geometric Clip-Path Selector */
+/* Futuristic Hex/Polygon Custom Clip-Path Selector */
 .hero-icon {
   width: 60px;
   height: 60px;
@@ -93,14 +93,14 @@ html, body, p, [class*="css"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 25px rgba(79,70,229,0.25);
+  box-shadow: 0 10px 25px rgba(20, 184, 166, 0.3);
   transition: transform 0.4s ease;
 }
 .hero-wrap:hover .hero-icon {
   transform: rotate(15deg) scale(1.08);
 }
 
-/* Visual Effect & Blending Gradient Text */
+/* Neon Gradient Text Blending */
 .hero-title {
   font-size: 2.25rem;
   font-weight: 900;
@@ -119,15 +119,15 @@ html, body, p, [class*="css"] {
   font-weight: 500;
 }
 
-/* Title Card Component */
+/* Card Header Module */
 .ds-card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius) var(--radius) 0 0;
-  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+  padding: 1.75rem 1.75rem 0.5rem 1.75rem;
   box-shadow: var(--shadow);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 .ds-card h3 {
   color: var(--text) !important;
@@ -135,81 +135,92 @@ html, body, p, [class*="css"] {
   letter-spacing: -0.01em;
   margin: 0;
 }
+.helper {
+  color: var(--muted) !important;
+  font-size: 0.95rem;
+  margin-top: 0.35rem;
+}
 
-/* Advanced Layout Engine: Grid Container Mapping */
+/* Glassmorphism Layout Engine Grid */
 div[data-testid="stHorizontalBlock"] {
   background: var(--card) !important;
   border: 1px solid var(--border) !important;
   border-radius: 0 0 var(--radius) var(--radius) !important;
   padding: 1.8rem !important;
   box-shadow: var(--shadow) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   margin-top: -1px !important; 
   margin-bottom: 1.5rem !important;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease !important;
 }
 
-/* Advanced Interaction State Trigger */
 div[data-testid="stHorizontalBlock"]:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover) !important;
-  border-color: rgba(79, 70, 229, 0.2) !important;
+  border-color: rgba(20, 184, 166, 0.3) !important;
+}
+
+/* Input Form Widgets Style Integrations */
+div[data-baseweb="select"] > div, div[data-baseweb="input"] > div {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 10px !important;
+}
+div[data-baseweb="select"] span, input {
+  color: var(--text) !important;
 }
 
 [data-testid="stWidgetLabel"] p, strong {
-  color: var(--text) !important;
-  font-weight: 700 !important;
+  color: #94A3B8 !important;
+  font-weight: 600 !important;
   font-size: 0.95rem;
 }
 
-/* Transform Functions on Form Buttons */
+/* Transform State Functions on Neon Buttons */
 .stButton > button, .stFormSubmitButton > button {
   width: 100%;
   border: 0 !important;
   border-radius: 14px !important;
   padding: 0.95rem 1.2rem !important;
   font-weight: 800 !important;
-  letter-spacing: 0.02em !important;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   background: var(--grad) !important;
-  color: white !important;
-  box-shadow: 0 12px 28px rgba(79, 70, 229, 0.25) !important;
+  color: #070A12 !important; /* High contrast dark text inside neon button */
+  box-shadow: 0 12px 28px rgba(20, 184, 166, 0.25) !important;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
 }
 
 .stButton > button:hover, .stFormSubmitButton > button:hover {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 18px 36px rgba(79, 70, 229, 0.35) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(20, 184, 166, 0.45) !important;
 }
 
-.stButton > button:active, .stFormSubmitButton > button:active {
-  transform: translateY(1px) scale(0.99);
-}
-
-/* Premium Blended Results Module */
+/* Cybernetic Neon Display Card */
 .result-card {
   margin-top: 1.5rem;
   border-radius: var(--radius);
-  border: 1px solid rgba(79, 70, 229, 0.15);
-  background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(124, 58, 237, 0.05));
-  box-shadow: var(--shadow);
-  padding: 1.5rem;
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(20, 184, 166, 0.05));
+  box-shadow: var(--shadow-hover);
+  padding: 1.75rem;
   position: relative;
   overflow: hidden;
 }
 
 .result-label {
   margin: 0;
-  color: rgba(15, 23, 42, 0.6) !important;
+  color: #94A3B8 !important;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   font-size: 0.85rem;
 }
 
 .result-value {
   margin: 0.25rem 0 0 0;
-  font-size: 3.5rem;
+  font-size: 3.8rem;
   font-weight: 950;
   letter-spacing: -0.04em;
   background: var(--grad);
@@ -221,19 +232,18 @@ div[data-testid="stHorizontalBlock"]:hover {
     unsafe_allow_html=True,
 )
 
-# --- Hero Module: Vector Scaling & Layered Curve Styling ---
+# --- Vector Scaling Header Waves (Updated Cyber Colors) ---
 cap_svg = """
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 3L1.5 8.25L12 13.5L22.5 8.25L12 3Z" fill="#FFFFFF"/>
-  <path d="M5.5 10.2V15.2C5.5 16.1 9 18.5 12 18.5C15 18.5 18.5 16.1 18.5 15.2V10.2L12 13.5L5.5 10.2Z" fill="rgba(255,255,255,0.8)"/>
+  <path d="M12 3L1.5 8.25L12 13.5L22.5 8.25L12 3Z" fill="#070A12"/>
+  <path d="M5.5 10.2V15.2C5.5 16.1 9 18.5 12 18.5C15 18.5 18.5 16.1 18.5 15.2V10.2L12 13.5L5.5 10.2Z" fill="rgba(7,10,18,0.75)"/>
 </svg>
 """
 
-# Zero-Asset Organic Multi-Layered Waves Container
 organic_waves = """
 <svg viewBox="0 0 1440 160" style="position:absolute; bottom:0; left:0; width:100%; height:auto; z-index:1; pointer-events:none; min-width:900px;">
-  <path fill="rgba(124, 58, 237, 0.07)" d="M0,96L60,101.3C120,107,240,117,360,112C480,107,600,85,720,80C840,75,960,85,1080,90.7C1200,96,1320,96,1380,96L1440,96L1440,160L1380,160C1320,160,1200,160,1080,160C960,160,840,160,720,160C600,160,480,160,360,160C240,160,120,160,60,160L0,160Z"></path>
-  <path fill="rgba(79, 70, 229, 0.05)" d="M0,128L60,122.7C120,117,240,107,360,96C480,85,600,75,720,80C840,85,960,107,1080,112C1200,117,1320,107,1380,101.3L1440,96L1440,160L1380,160C1320,160,1200,160,1080,160C960,160,840,160,720,160C600,160,480,160,360,160C240,160,120,160,60,160L0,160Z"></path>
+  <path fill="rgba(20, 184, 166, 0.06)" d="M0,96L60,101.3C120,107,240,117,360,112C480,107,600,85,720,80C840,75,960,85,1080,90.7C1200,96,1320,96,1380,96L1440,96L1440,160L1380,160C1320,160,1200,160,1080,160C960,160,840,160,720,160C600,160,480,160,360,160C240,160,120,160,60,160L0,160Z"></path>
+  <path fill="rgba(99, 102, 241, 0.04)" d="M0,128L60,122.7C120,117,240,107,360,96C480,85,600,75,720,80C840,85,960,107,1080,112C1200,117,1320,107,1380,101.3L1440,96L1440,160L1380,160C1320,160,1200,160,1080,160C960,160,840,160,720,160C600,160,480,160,360,160C240,160,120,160,60,160L0,160Z"></path>
 </svg>
 """
 
@@ -253,19 +263,18 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# --- Main Form Block Layout ---
+# --- Form Block Layout ---
 with st.form("prediction_form"):
     st.markdown(
         """
 <div class="ds-card">
   <h3>Student Profile Information</h3>
-  <div class="helper">Fill in the metrics below to execute the pipeline matrix.</div>
+  <div class="helper">Input demographic parameters to deploy predictive metrics.</div>
 </div>
 """,
         unsafe_allow_html=True,
     )
 
-    # Natively structured columns handled smoothly by our advanced horizontal block engines
     left, right = st.columns(2, gap="large")
 
     with left:
@@ -297,9 +306,9 @@ with st.form("prediction_form"):
 
     submit_button = st.form_submit_button(label="Predict Math Score", use_container_width=True)
 
-# --- Scaled Prediction Engine Logic ---
+# --- Optimized Core Prediction Logic ---
 if submit_button:
-    with st.spinner("Analyzing parameters and deploying pipeline prediction..."):
+    with st.spinner("Processing parameters via pipeline matrices..."):
         try:
             data = CustomData(
                 gender=gender,
@@ -320,21 +329,21 @@ if submit_button:
             if arr.size == 0:
                 raise ValueError(f"Model returned empty predictions: {results}")
 
-            # Precise extraction of the 0-dimensional scalar float value
+            # Precise extraction of the 0-dimensional scalar float
             final_score = round(float(arr[0]), 2)
 
             st.markdown(
                 f"""
 <div class="result-card">
   <p class="result-label">Predicted Math Score</p>
-  <p class="result-value">{final_score} <span style="font-size:1.35rem; font-weight:800; color: #7C3AED; -webkit-text-fill-color: #7C3AED; opacity:0.7;">/ 100</span></p>
+  <p class="result-value">{final_score} <span style="font-size:1.4rem; font-weight:800; color: var(--teal); -webkit-text-fill-color: var(--teal); opacity:0.8;">/ 100</span></p>
 </div>
 """,
                 unsafe_allow_html=True,
             )
 
             if final_score > 100:
-                st.info("Note: Depending on your validation metrics, predictions can occasionally scale above 100.")
+                st.info("Note: System calculations can occasionally scale above a baseline of 100.")
 
         except FileNotFoundError:
             st.error("🚨 Missing model files: ensure your `artifacts/` tree contains valid serialization components.")
