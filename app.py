@@ -250,9 +250,12 @@ if submit_button:
             predict_pipeline = PredictPipeline()
             results = predict_pipeline.predict(pred_df)
 
-            # IMPORTANT FIX: extract a single scalar from array/list outputs
-            final_score = np.asarray(results).reshape(-1)
-            final_score = round(float(final_score), 2)
+            # ✅ Robust scalar extraction (works for list, (1,), (1,1), etc.)
+            arr = np.asarray(results).ravel()
+            if arr.size == 0:
+                raise ValueError(f"Model returned empty predictions: {results}")
+
+            final_score = round(float(arr), 2)
 
             st.markdown(
                 f"""
