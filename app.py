@@ -65,7 +65,7 @@ header {visibility: hidden;}
   margin-bottom: 1.25rem;
   position: relative;
   overflow: hidden;
-}
+} Jung
 
 .hero-grid{
   position: relative;
@@ -250,12 +250,13 @@ if submit_button:
             predict_pipeline = PredictPipeline()
             results = predict_pipeline.predict(pred_df)
 
-            # ✅ Robust scalar extraction (works for list, (1,), (1,1), etc.)
+            # Extract the raw array
             arr = np.asarray(results).ravel()
             if arr.size == 0:
                 raise ValueError(f"Model returned empty predictions: {results}")
 
-            final_score = round(float(arr), 2)
+            # FIXED: Target the explicit 0th index to convert to a Python scalar cleanly
+            final_score = round(float(arr[0]), 2)
 
             st.markdown(
                 f"""
