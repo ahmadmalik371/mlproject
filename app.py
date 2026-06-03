@@ -16,93 +16,120 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- Midnight Obsidian CSS Framework ---
+# --- Premium Amethyst CSS Engine ---
 st.markdown(
     """
 <style>
-:root{
-  --bg: #070A12;
-  --card: rgba(15, 23, 42, 0.65);
-  --text: #F1F5F9;
-  --muted: #64748B;
-  --border: rgba(99, 102, 241, 0.15);
-
-  --indigo: #6366F1;
-  --teal: #14B8A6;
-  --grad: linear-gradient(135deg, #6366F1, #14B8A6);
-  --grad-glow: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(20, 184, 166, 0.1));
-
-  --shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-  --shadow-hover: 0 30px 60px rgba(20, 184, 166, 0.15);
-  --radius: 20px;
+:root {
+  --bg: #0A0C14;
+  --card: rgba(19, 23, 38, 0.75);
+  --text: #F8FAFC;
+  --muted: #94A3B8;
+  --border: rgba(139, 92, 246, 0.15);
+  
+  --violet: #8B5CF6;
+  --fuchsia: #D946EF;
+  --grad: linear-gradient(135deg, #8B5CF6, #D946EF);
+  
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --radius: 24px;
 }
 
-/* Force dark theme overrides and stop mobile inversion bugs */
+/* Global Dynamic Overrides & Typography Protection */
 html, body, p, [class*="css"] {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: var(--text) !important;
 }
 
-#MainMenu, footer, header {visibility: hidden;}
+#MainMenu, footer, header { visibility: hidden; }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Buttery-Smooth Ambient Background Breathing Loop */
+@keyframes ambientGlow {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(40px, -30px) scale(1.15); }
 }
 
 .stApp {
-  background: radial-gradient(1000px 600px at 0% 0%, rgba(99, 102, 241, 0.12), transparent 50%),
-              radial-gradient(800px 600px at 100% 100%, rgba(20, 184, 166, 0.12), transparent 50%),
-              var(--bg);
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  background-color: var(--bg);
+  overflow: hidden;
+}
+
+/* Layering the dynamic background mesh */
+.stApp::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: -150px;
+  left: -150px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+  filter: blur(60px);
+  animation: ambientGlow 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.stApp::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  bottom: -100px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(217, 46, 239, 0.1) 0%, transparent 70%);
+  filter: blur(50px);
+  animation: ambientGlow 16s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
 .block-container {
-  padding-top: 2rem !important;
-  padding-bottom: 3rem !important;
-  max-width: 900px;
+  padding-top: 2.5rem !important;
+  padding-bottom: 4rem !important;
+  max-width: 860px;
+  position: relative;
+  z-index: 10;
 }
 
-/* Premium Obsidian Hero Banner */
+/* Infinite Floating Loop for Core Branding Header */
+@keyframes floatAnimation {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
 .hero-wrap {
-  position: relative;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.5));
+  background: linear-gradient(135deg, rgba(19, 23, 38, 0.85), rgba(30, 41, 59, 0.4));
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 2.2rem 2.2rem 4.5rem 2.2rem;
-  margin-bottom: 1.5rem;
-  overflow: hidden;
+  padding: 2.5rem;
+  margin-bottom: 1.75rem;
   box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: floatAnimation 6s ease-in-out infinite;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 68px 1fr;
-  gap: 18px;
+  grid-template-columns: 70px 1fr;
+  gap: 20px;
   align-items: center;
-  position: relative;
-  z-index: 5;
 }
 
-/* Futuristic Hex/Polygon Custom Clip-Path Selector */
+/* Luxury Multi-Layer Custom Clip Path */
 .hero-icon {
-  width: 60px;
-  height: 60px;
-  clip-path: polygon(25% 5%, 75% 5%, 100% 30%, 100% 70%, 75% 95%, 25% 95%, 0% 70%, 0% 30%);
+  width: 64px;
+  height: 64px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   background: var(--grad);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 25px rgba(20, 184, 166, 0.3);
-  transition: transform 0.4s ease;
-}
-.hero-wrap:hover .hero-icon {
-  transform: rotate(15deg) scale(1.08);
+  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.4);
 }
 
-/* Neon Gradient Text Blending */
+/* Liquid Visual Gradient Title Card */
 .hero-title {
-  font-size: 2.25rem;
+  font-size: 2.4rem;
   font-weight: 900;
   line-height: 1.1;
   margin: 0;
@@ -113,100 +140,104 @@ html, body, p, [class*="css"] {
 }
 
 .hero-subtitle {
-  margin: 0.4rem 0 0 0;
+  margin: 0.5rem 0 0 0;
   color: var(--muted) !important;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 500;
 }
 
-/* Card Header Module */
+/* Card Header Shell Setup */
 .ds-card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius) var(--radius) 0 0;
-  padding: 1.75rem 1.75rem 0.5rem 1.75rem;
+  padding: 2rem 2rem 0.5rem 2rem;
   box-shadow: var(--shadow);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .ds-card h3 {
   color: var(--text) !important;
-  font-weight: 850;
+  font-weight: 800;
   letter-spacing: -0.01em;
   margin: 0;
+  font-size: 1.5rem;
 }
 .helper {
   color: var(--muted) !important;
   font-size: 0.95rem;
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
 }
 
-/* Glassmorphism Layout Engine Grid */
+/* Grid Layout Matrix & Interactive Transition Anchors */
 div[data-testid="stHorizontalBlock"] {
   background: var(--card) !important;
   border: 1px solid var(--border) !important;
   border-radius: 0 0 var(--radius) var(--radius) !important;
-  padding: 1.8rem !important;
+  padding: 2rem !important;
   box-shadow: var(--shadow) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   margin-top: -1px !important; 
-  margin-bottom: 1.5rem !important;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease !important;
+  margin-bottom: 2rem !important;
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-div[data-testid="stHorizontalBlock"]:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover) !important;
-  border-color: rgba(20, 184, 166, 0.3) !important;
+/* Interactive Focus Shell Glow expansion */
+div[data-testid="stHorizontalBlock"]:focus-within, div[data-testid="stHorizontalBlock"]:hover {
+  border-color: rgba(217, 46, 239, 0.35) !important;
+  box-shadow: 0 30px 60px rgba(139, 92, 246, 0.12) !important;
 }
 
-/* Input Form Widgets Style Integrations */
+/* Clean Integrated Fields Configuration */
 div[data-baseweb="select"] > div, div[data-baseweb="input"] > div {
-  background-color: rgba(15, 23, 42, 0.6) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 10px !important;
+  background-color: rgba(10, 12, 20, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+}
+div[data-baseweb="select"] > div:hover, div[data-baseweb="input"] > div:hover {
+  border-color: rgba(139, 92, 246, 0.5) !important;
 }
 div[data-baseweb="select"] span, input {
   color: var(--text) !important;
 }
 
 [data-testid="stWidgetLabel"] p, strong {
-  color: #94A3B8 !important;
+  color: #CBD5E1 !important;
   font-weight: 600 !important;
   font-size: 0.95rem;
 }
 
-/* Transform State Functions on Neon Buttons */
+/* High-End Shimmer Interactive Action Button */
 .stButton > button, .stFormSubmitButton > button {
   width: 100%;
   border: 0 !important;
-  border-radius: 14px !important;
-  padding: 0.95rem 1.2rem !important;
+  border-radius: 16px !important;
+  padding: 1rem 1.5rem !important;
   font-weight: 800 !important;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   background: var(--grad) !important;
-  color: #070A12 !important; /* High contrast dark text inside neon button */
-  box-shadow: 0 12px 28px rgba(20, 184, 166, 0.25) !important;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
+  color: #0A0C14 !important;
+  box-shadow: 0 15px 35px rgba(139, 92, 246, 0.3) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease !important;
 }
 
 .stButton > button:hover, .stFormSubmitButton > button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 36px rgba(20, 184, 166, 0.45) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 22px 45px rgba(217, 46, 239, 0.45) !important;
 }
 
-/* Cybernetic Neon Display Card */
+/* Velvet Result Banner Component */
 .result-card {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   border-radius: var(--radius);
-  border: 1px solid rgba(20, 184, 166, 0.3);
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(20, 184, 166, 0.05));
-  box-shadow: var(--shadow-hover);
-  padding: 1.75rem;
+  border: 1px solid rgba(217, 46, 239, 0.3);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(217, 46, 239, 0.08));
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  padding: 2rem;
   position: relative;
-  overflow: hidden;
 }
 
 .result-label {
@@ -214,15 +245,15 @@ div[data-baseweb="select"] span, input {
   color: #94A3B8 !important;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   font-size: 0.85rem;
 }
 
 .result-value {
-  margin: 0.25rem 0 0 0;
-  font-size: 3.8rem;
+  margin: 0.4rem 0 0 0;
+  font-size: 4.2rem;
   font-weight: 950;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
   background: var(--grad);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -232,18 +263,11 @@ div[data-baseweb="select"] span, input {
     unsafe_allow_html=True,
 )
 
-# --- Vector Scaling Header Waves (Updated Cyber Colors) ---
+# --- Scalable Vector Graphic Branding Anchor ---
 cap_svg = """
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 3L1.5 8.25L12 13.5L22.5 8.25L12 3Z" fill="#070A12"/>
-  <path d="M5.5 10.2V15.2C5.5 16.1 9 18.5 12 18.5C15 18.5 18.5 16.1 18.5 15.2V10.2L12 13.5L5.5 10.2Z" fill="rgba(7,10,18,0.75)"/>
-</svg>
-"""
-
-organic_waves = """
-<svg viewBox="0 0 1440 160" style="position:absolute; bottom:0; left:0; width:100%; height:auto; z-index:1; pointer-events:none; min-width:900px;">
-  <path fill="rgba(20, 184, 166, 0.06)" d="M0,96L60,101.3C120,107,240,117,360,112C480,107,600,85,720,80C840,75,960,85,1080,90.7C1200,96,1320,96,1380,96L1440,96L1440,160L1380,160C1320,160,1200,160,1080,160C960,160,840,160,720,160C600,160,480,160,360,160C240,160,120,160,60,160L0,160Z"></path>
-  <path fill="rgba(99, 102, 241, 0.04)" d="M0,128L60,122.7C120,117,240,107,360,96C480,85,600,75,720,80C840,85,960,107,1080,112C1200,117,1320,107,1380,101.3L1440,96L1440,160L1380,160C1320,160,1200,160,1080,160C960,160,840,160,720,160C600,160,480,160,360,160C240,160,120,160,60,160L0,160Z"></path>
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 3L1.5 8.25L12 13.5L22.5 8.25L12 3Z" fill="#0A0C14"/>
+  <path d="M5.5 10.2V15.2C5.5 16.1 9 18.5 12 18.5C15 18.5 18.5 16.1 18.5 15.2V10.2L12 13.5L5.5 10.2Z" fill="rgba(10,12,20,0.75)"/>
 </svg>
 """
 
@@ -257,19 +281,18 @@ st.markdown(
       <p class="hero-subtitle">Estimate math performance from demographics and academic context.</p>
     </div>
   </div>
-  {organic_waves}
 </div>
 """,
     unsafe_allow_html=True,
 )
 
-# --- Form Block Layout ---
+# --- Execution Dashboard Workspace ---
 with st.form("prediction_form"):
     st.markdown(
         """
 <div class="ds-card">
   <h3>Student Profile Information</h3>
-  <div class="helper">Input demographic parameters to deploy predictive metrics.</div>
+  <div class="helper">Input metrics directly to calculate validation matrices.</div>
 </div>
 """,
         unsafe_allow_html=True,
@@ -306,9 +329,9 @@ with st.form("prediction_form"):
 
     submit_button = st.form_submit_button(label="Predict Math Score", use_container_width=True)
 
-# --- Optimized Core Prediction Logic ---
+# --- Core Pipeline Integration Matrix ---
 if submit_button:
-    with st.spinner("Processing parameters via pipeline matrices..."):
+    with st.spinner("Processing parameters via prediction matrices..."):
         try:
             data = CustomData(
                 gender=gender,
@@ -329,14 +352,13 @@ if submit_button:
             if arr.size == 0:
                 raise ValueError(f"Model returned empty predictions: {results}")
 
-            # Precise extraction of the 0-dimensional scalar float
             final_score = round(float(arr[0]), 2)
 
             st.markdown(
                 f"""
 <div class="result-card">
   <p class="result-label">Predicted Math Score</p>
-  <p class="result-value">{final_score} <span style="font-size:1.4rem; font-weight:800; color: var(--teal); -webkit-text-fill-color: var(--teal); opacity:0.8;">/ 100</span></p>
+  <p class="result-value">{final_score} <span style="font-size:1.5rem; font-weight:800; color: var(--fuchsia); -webkit-text-fill-color: var(--fuchsia); opacity:0.8;">/ 100</span></p>
 </div>
 """,
                 unsafe_allow_html=True,
