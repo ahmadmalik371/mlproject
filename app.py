@@ -16,13 +16,13 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- Custom CSS Styling (Modern Light + Indigo/Purple Accents) ---
+# --- Custom CSS Styling (Responsive & Theme-Locked) ---
 st.markdown(
     """
 <style>
 :root{
   --bg: #F7F8FC;
-  --card: rgba(255,255,255,0.86);
+  --card: rgba(255,255,255,0.92);
   --text: #0F172A;
   --muted: #64748B;
   --border: rgba(15, 23, 42, 0.10);
@@ -35,14 +35,13 @@ st.markdown(
   --radius: 16px;
 }
 
-html, body, [class*="css"] {
+/* Force global theme stability across both PC & Mobile dark/light frames */
+html, body, p, [class*="css"] {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  color: var(--text);
+  color: var(--text) !important;
 }
 
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
+#MainMenu, footer, header {visibility: hidden;}
 
 .stApp {
   background: radial-gradient(1200px 600px at 10% 0%, rgba(124, 58, 237, 0.10), transparent 55%),
@@ -65,7 +64,7 @@ header {visibility: hidden;}
   margin-bottom: 1.25rem;
   position: relative;
   overflow: hidden;
-} Jung
+}
 
 .hero-grid{
   position: relative;
@@ -93,11 +92,12 @@ header {visibility: hidden;}
   line-height: 1.1;
   margin: 0;
   letter-spacing: -0.02em;
+  color: var(--text) !important;
 }
 
 .hero-subtitle{
   margin: 0.35rem 0 0 0;
-  color: var(--muted);
+  color: var(--muted) !important;
   font-size: 1.02rem;
 }
 
@@ -112,11 +112,35 @@ header {visibility: hidden;}
   margin-top: 0.75rem;
 }
 
+.ds-card h3 {
+  color: var(--text) !important;
+  margin: 0;
+}
+
 .helper{
-  color: var(--muted);
+  color: var(--muted) !important;
   font-size: 0.92rem;
-  margin-top: -0.25rem;
+  margin-top: 0.25rem;
   margin-bottom: 0.9rem;
+}
+
+/* NATIVE WRAPPER FIX: Beautifully styles the columns layout section safely */
+div[data-testid="stHorizontalBlock"] {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  padding: 1.5rem !important;
+  box-shadow: var(--shadow) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Strict label visibility rules */
+[data-testid="stWidgetLabel"] p, strong {
+  color: var(--text) !important;
+  font-weight: 700 !important;
 }
 
 .stButton > button, .stFormSubmitButton > button{
@@ -142,7 +166,7 @@ header {visibility: hidden;}
 
 .result-label{
   margin: 0;
-  color: rgba(15,23,42,0.75);
+  color: rgba(15,23,42,0.75) !important;
   font-weight: 750;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -154,7 +178,7 @@ header {visibility: hidden;}
   font-size: 3.0rem;
   font-weight: 900;
   letter-spacing: -0.03em;
-  color: rgba(15,23,42,0.92);
+  color: rgba(15,23,42,0.92) !important;
 }
 </style>
 """,
@@ -198,7 +222,7 @@ with st.form("prediction_form"):
         unsafe_allow_html=True,
     )
 
-    st.markdown('<div class="ds-card">', unsafe_allow_html=True)
+    # Cleaned layout framework: Columns styled natively using CSS mapping tokens
     left, right = st.columns(2, gap="large")
 
     with left:
@@ -228,10 +252,9 @@ with st.form("prediction_form"):
         with c2:
             writing_score = st.number_input("Writing Score", min_value=0, max_value=100, value=50, step=1)
 
-    st.markdown("</div>", unsafe_allow_html=True)
     submit_button = st.form_submit_button(label="Predict Math Score", use_container_width=True)
 
-# --- Prediction Logic (FIXED) ---
+# --- Prediction Logic ---
 if submit_button:
     with st.spinner("Analyzing profile and generating prediction..."):
         try:
@@ -250,12 +273,10 @@ if submit_button:
             predict_pipeline = PredictPipeline()
             results = predict_pipeline.predict(pred_df)
 
-            # Extract the raw array
             arr = np.asarray(results).ravel()
             if arr.size == 0:
                 raise ValueError(f"Model returned empty predictions: {results}")
 
-            # FIXED: Target the explicit 0th index to convert to a Python scalar cleanly
             final_score = round(float(arr[0]), 2)
 
             st.markdown(
