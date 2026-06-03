@@ -1,13 +1,6 @@
 import streamlit as st
 import numpy as np
 
-# Import your existing pipeline modules
-try:
-    from src.pipeline.predict_pipeline import CustomData, PredictPipeline
-except ModuleNotFoundError:
-    st.error("⚠️ Could not locate the `src` module. Ensure `app.py` is in the root directory alongside `src/`.")
-    st.stop()
-
 # --- Page Configuration ---
 st.set_page_config(
     page_title="Student Performance Predictor",
@@ -16,16 +9,16 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- Premium Amethyst CSS Engine ---
+# --- Hardened Mobile-Friendly CSS Engine ---
 st.markdown(
     """
 <style>
 :root {
   --bg: #0A0C14;
-  --card: rgba(19, 23, 38, 0.75);
+  --card: #131726; /* Changed to solid hex to prevent mobile color-inversion washouts */
   --text: #F8FAFC;
   --muted: #94A3B8;
-  --border: rgba(139, 92, 246, 0.15);
+  --border: rgba(139, 92, 246, 0.25);
   
   --violet: #8B5CF6;
   --fuchsia: #D946EF;
@@ -35,7 +28,7 @@ st.markdown(
   --radius: 24px;
 }
 
-/* Global Dynamic Overrides & Typography Protection */
+/* Global Overrides */
 html, body, p, [class*="css"] {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: var(--text) !important;
@@ -43,69 +36,24 @@ html, body, p, [class*="css"] {
 
 #MainMenu, footer, header { visibility: hidden; }
 
-/* Buttery-Smooth Ambient Background Breathing Loop */
-@keyframes ambientGlow {
-  0%, 100% { transform: translate(0px, 0px) scale(1); }
-  50% { transform: translate(40px, -30px) scale(1.15); }
-}
-
 .stApp {
-  background-color: var(--bg);
-  overflow: hidden;
-}
-
-/* Layering the dynamic background mesh */
-.stApp::before {
-  content: "";
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  top: -150px;
-  left: -150px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
-  filter: blur(60px);
-  animation: ambientGlow 12s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.stApp::after {
-  content: "";
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  bottom: -100px;
-  right: -100px;
-  background: radial-gradient(circle, rgba(217, 46, 239, 0.1) 0%, transparent 70%);
-  filter: blur(50px);
-  animation: ambientGlow 16s ease-in-out infinite alternate;
-  pointer-events: none;
+  background-color: var(--bg) !important;
 }
 
 .block-container {
   padding-top: 2.5rem !important;
   padding-bottom: 4rem !important;
   max-width: 860px;
-  position: relative;
-  z-index: 10;
 }
 
-/* Infinite Floating Loop for Core Branding Header */
-@keyframes floatAnimation {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
-}
-
+/* Header Container */
 .hero-wrap {
-  background: linear-gradient(135deg, rgba(19, 23, 38, 0.85), rgba(30, 41, 59, 0.4));
+  background: #131726;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2.5rem;
   margin-bottom: 1.75rem;
   box-shadow: var(--shadow);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  animation: floatAnimation 6s ease-in-out infinite;
 }
 
 .hero-grid {
@@ -115,7 +63,6 @@ html, body, p, [class*="css"] {
   align-items: center;
 }
 
-/* Luxury Multi-Layer Custom Clip Path */
 .hero-icon {
   width: 64px;
   height: 64px;
@@ -124,10 +71,8 @@ html, body, p, [class*="css"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.4);
 }
 
-/* Liquid Visual Gradient Title Card */
 .hero-title {
   font-size: 2.4rem;
   font-weight: 900;
@@ -146,20 +91,16 @@ html, body, p, [class*="css"] {
   font-weight: 500;
 }
 
-/* Card Header Shell Setup */
+/* Main Form Elements Setup */
 .ds-card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius) var(--radius) 0 0;
   padding: 2rem 2rem 0.5rem 2rem;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 .ds-card h3 {
   color: var(--text) !important;
   font-weight: 800;
-  letter-spacing: -0.01em;
   margin: 0;
   font-size: 1.5rem;
 }
@@ -169,75 +110,51 @@ html, body, p, [class*="css"] {
   margin-top: 0.4rem;
 }
 
-/* Grid Layout Matrix & Interactive Transition Anchors */
+/* Grid Layout Matrix Configuration */
 div[data-testid="stHorizontalBlock"] {
   background: var(--card) !important;
   border: 1px solid var(--border) !important;
   border-radius: 0 0 var(--radius) var(--radius) !important;
   padding: 2rem !important;
-  box-shadow: var(--shadow) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   margin-top: -1px !important; 
   margin-bottom: 2rem !important;
-  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Interactive Focus Shell Glow expansion */
-div[data-testid="stHorizontalBlock"]:focus-within, div[data-testid="stHorizontalBlock"]:hover {
-  border-color: rgba(217, 46, 239, 0.35) !important;
-  box-shadow: 0 30px 60px rgba(139, 92, 246, 0.12) !important;
-}
-
-/* Clean Integrated Fields Configuration */
+/* High Contrast Input Fields for Mobile Forms */
 div[data-baseweb="select"] > div, div[data-baseweb="input"] > div {
-  background-color: rgba(10, 12, 20, 0.6) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background-color: #0A0C14 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
   border-radius: 12px !important;
-  transition: all 0.3s ease !important;
-}
-div[data-baseweb="select"] > div:hover, div[data-baseweb="input"] > div:hover {
-  border-color: rgba(139, 92, 246, 0.5) !important;
 }
 div[data-baseweb="select"] span, input {
   color: var(--text) !important;
 }
 
 [data-testid="stWidgetLabel"] p, strong {
-  color: #CBD5E1 !important;
+  color: #E2E8F0 !important;
   font-weight: 600 !important;
-  font-size: 0.95rem;
 }
 
-/* High-End Shimmer Interactive Action Button */
+/* Submit Action Button */
 .stButton > button, .stFormSubmitButton > button {
   width: 100%;
   border: 0 !important;
   border-radius: 16px !important;
   padding: 1rem 1.5rem !important;
   font-weight: 800 !important;
-  letter-spacing: 0.04em;
   text-transform: uppercase;
   background: var(--grad) !important;
   color: #0A0C14 !important;
   box-shadow: 0 15px 35px rgba(139, 92, 246, 0.3) !important;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease !important;
 }
 
-.stButton > button:hover, .stFormSubmitButton > button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 22px 45px rgba(217, 46, 239, 0.45) !important;
-}
-
-/* Velvet Result Banner Component */
+/* Result Banner Layout */
 .result-card {
   margin-top: 2rem;
   border-radius: var(--radius);
-  border: 1px solid rgba(217, 46, 239, 0.3);
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(217, 46, 239, 0.08));
-  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  border: 1px solid rgba(217, 46, 239, 0.4);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(217, 46, 239, 0.1));
   padding: 2rem;
-  position: relative;
 }
 
 .result-label {
@@ -253,7 +170,6 @@ div[data-baseweb="select"] span, input {
   margin: 0.4rem 0 0 0;
   font-size: 4.2rem;
   font-weight: 950;
-  letter-spacing: -0.05em;
   background: var(--grad);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -263,7 +179,7 @@ div[data-baseweb="select"] span, input {
     unsafe_allow_html=True,
 )
 
-# --- Scalable Vector Graphic Branding Anchor ---
+# --- Icon Vector Graphics ---
 cap_svg = """
 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M12 3L1.5 8.25L12 13.5L22.5 8.25L12 3Z" fill="#0A0C14"/>
@@ -286,7 +202,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# --- Execution Dashboard Workspace ---
+# --- Interactive Workspace ---
 with st.form("prediction_form"):
     st.markdown(
         """
@@ -333,6 +249,9 @@ with st.form("prediction_form"):
 if submit_button:
     with st.spinner("Processing parameters via prediction matrices..."):
         try:
+            # LAZY LOADING IMPORTS: Bypasses mobile load-time race conditions entirely
+            from src.pipeline.predict_pipeline import CustomData, PredictPipeline
+
             data = CustomData(
                 gender=gender,
                 race_ethnicity=race_ethnicity,
@@ -363,9 +282,6 @@ if submit_button:
 """,
                 unsafe_allow_html=True,
             )
-
-            if final_score > 100:
-                st.info("Note: System calculations can occasionally scale above a baseline of 100.")
 
         except FileNotFoundError:
             st.error("🚨 Missing model files: ensure your `artifacts/` tree contains valid serialization components.")
