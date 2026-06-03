@@ -16,182 +16,224 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- Custom CSS Styling (Responsive & Theme-Locked) ---
+# --- High-End CSS Styling Framework ---
 st.markdown(
     """
 <style>
 :root{
-  --bg: #F7F8FC;
-  --card: rgba(255,255,255,0.92);
+  --bg: #F8FAFC;
+  --card: rgba(255, 255, 255, 0.88);
   --text: #0F172A;
   --muted: #64748B;
-  --border: rgba(15, 23, 42, 0.10);
+  --border: rgba(79, 70, 229, 0.08);
 
   --indigo: #4F46E5;
   --purple: #7C3AED;
+  --grad: linear-gradient(135deg, #4F46E5, #7C3AED);
 
-  --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
-  --shadow-2: 0 10px 25px rgba(15, 23, 42, 0.08);
-  --radius: 16px;
+  --shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+  --shadow-hover: 0 30px 60px rgba(79, 70, 229, 0.12);
+  --radius: 20px;
 }
 
-/* Force global theme stability across both PC & Mobile dark/light frames */
+/* Base Adjustments & Animations */
 html, body, p, [class*="css"] {
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
   color: var(--text) !important;
 }
 
 #MainMenu, footer, header {visibility: hidden;}
 
+/* Dynamic Entrance Blending Effect */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .stApp {
-  background: radial-gradient(1200px 600px at 10% 0%, rgba(124, 58, 237, 0.10), transparent 55%),
-              radial-gradient(900px 500px at 90% 10%, rgba(79, 70, 229, 0.10), transparent 55%),
+  background: radial-gradient(1000px 600px at 0% 0%, rgba(79, 70, 229, 0.08), transparent 50%),
+              radial-gradient(800px 600px at 100% 100%, rgba(124, 58, 237, 0.08), transparent 50%),
               linear-gradient(180deg, var(--bg), #FFFFFF);
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .block-container {
-  padding-top: 2.25rem !important;
+  padding-top: 2rem !important;
   padding-bottom: 3rem !important;
-  max-width: 980px;
+  max-width: 900px;
 }
 
-.hero-wrap{
-  background: linear-gradient(135deg, rgba(79,70,229,0.10), rgba(124,58,237,0.08));
+/* Premium Hero Module with Clip-Paths & Layered Waves */
+.hero-wrap {
+  position: relative;
+  background: linear-gradient(135deg, rgba(79,70,229,0.08), rgba(124,58,237,0.05));
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  padding: 2.2rem 2.2rem 4.5rem 2.2rem;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
   box-shadow: var(--shadow);
-  padding: 1.35rem 1.5rem;
-  margin-bottom: 1.25rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  gap: 18px;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+/* Advanced Geometric Clip-Path Selector */
+.hero-icon {
+  width: 60px;
+  height: 60px;
+  clip-path: polygon(25% 5%, 75% 5%, 100% 30%, 100% 70%, 75% 95%, 25% 95%, 0% 70%, 0% 30%);
+  background: var(--grad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(79,70,229,0.25);
+  transition: transform 0.4s ease;
+}
+.hero-wrap:hover .hero-icon {
+  transform: rotate(15deg) scale(1.08);
+}
+
+/* Visual Effect & Blending Gradient Text */
+.hero-title {
+  font-size: 2.25rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.03em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  margin: 0.4rem 0 0 0;
+  color: var(--muted) !important;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+/* Title Card Component */
+.ds-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.ds-card h3 {
+  color: var(--text) !important;
+  font-weight: 850;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+/* Advanced Layout Engine: Grid Container Mapping */
+div[data-testid="stHorizontalBlock"] {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 0 0 var(--radius) var(--radius) !important;
+  padding: 1.8rem !important;
+  box-shadow: var(--shadow) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-top: -1px !important; 
+  margin-bottom: 1.5rem !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease !important;
+}
+
+/* Advanced Interaction State Trigger */
+div[data-testid="stHorizontalBlock"]:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover) !important;
+  border-color: rgba(79, 70, 229, 0.2) !important;
+}
+
+[data-testid="stWidgetLabel"] p, strong {
+  color: var(--text) !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem;
+}
+
+/* Transform Functions on Form Buttons */
+.stButton > button, .stFormSubmitButton > button {
+  width: 100%;
+  border: 0 !important;
+  border-radius: 14px !important;
+  padding: 0.95rem 1.2rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+  background: var(--grad) !important;
+  color: white !important;
+  box-shadow: 0 12px 28px rgba(79, 70, 229, 0.25) !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
+}
+
+.stButton > button:hover, .stFormSubmitButton > button:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 18px 36px rgba(79, 70, 229, 0.35) !important;
+}
+
+.stButton > button:active, .stFormSubmitButton > button:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+/* Premium Blended Results Module */
+.result-card {
+  margin-top: 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(79, 70, 229, 0.15);
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(124, 58, 237, 0.05));
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
   position: relative;
   overflow: hidden;
 }
 
-.hero-grid{
-  position: relative;
-  display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 14px;
-  align-items: center;
-}
-
-.hero-icon{
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(79,70,229,0.18), rgba(124,58,237,0.16));
-  border: 1px solid rgba(79,70,229,0.18);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow: var(--shadow-2);
-}
-
-.hero-title{
-  font-size: 2.05rem;
-  font-weight: 850;
-  line-height: 1.1;
+.result-label {
   margin: 0;
-  letter-spacing: -0.02em;
-  color: var(--text) !important;
-}
-
-.hero-subtitle{
-  margin: 0.35rem 0 0 0;
-  color: var(--muted) !important;
-  font-size: 1.02rem;
-}
-
-.ds-card{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.15rem 1.15rem 0.25rem 1.15rem;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  margin-top: 0.75rem;
-}
-
-.ds-card h3 {
-  color: var(--text) !important;
-  margin: 0;
-}
-
-.helper{
-  color: var(--muted) !important;
-  font-size: 0.92rem;
-  margin-top: 0.25rem;
-  margin-bottom: 0.9rem;
-}
-
-/* NATIVE WRAPPER FIX: Beautifully styles the columns layout section safely */
-div[data-testid="stHorizontalBlock"] {
-  background: var(--card) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: var(--radius) !important;
-  padding: 1.5rem !important;
-  box-shadow: var(--shadow) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* Strict label visibility rules */
-[data-testid="stWidgetLabel"] p, strong {
-  color: var(--text) !important;
-  font-weight: 700 !important;
-}
-
-.stButton > button, .stFormSubmitButton > button{
-  width: 100%;
-  border: 0 !important;
-  border-radius: 14px !important;
-  padding: 0.85rem 1.05rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.01em !important;
-  background: linear-gradient(135deg, var(--indigo), var(--purple)) !important;
-  color: white !important;
-  box-shadow: 0 14px 30px rgba(79,70,229,0.28) !important;
-}
-
-.result-card{
-  margin-top: 1rem;
-  border-radius: var(--radius);
-  border: 1px solid rgba(79,70,229,0.18);
-  background: linear-gradient(135deg, rgba(79,70,229,0.10), rgba(124,58,237,0.08));
-  box-shadow: var(--shadow);
-  padding: 1.25rem 1.25rem;
-}
-
-.result-label{
-  margin: 0;
-  color: rgba(15,23,42,0.75) !important;
-  font-weight: 750;
+  color: rgba(15, 23, 42, 0.6) !important;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.82rem;
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
 }
 
-.result-value{
-  margin: 0.35rem 0 0 0;
-  font-size: 3.0rem;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  color: rgba(15,23,42,0.92) !important;
+.result-value {
+  margin: 0.25rem 0 0 0;
+  font-size: 3.5rem;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>
 """,
     unsafe_allow_html=True,
 )
 
-# --- Hero Section ---
+# --- Hero Module: Vector Scaling & Layered Curve Styling ---
 cap_svg = """
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 3L1.5 8.25L12 13.5L22.5 8.25L12 3Z" fill="rgba(79,70,229,0.95)"/>
-  <path d="M5.5 10.2V15.2C5.5 16.1 9 18.5 12 18.5C15 18.5 18.5 16.1 18.5 15.2V10.2L12 13.5L5.5 10.2Z" fill="rgba(124,58,237,0.85)"/>
-  <path d="M22.5 8.25V14.25" stroke="rgba(15,23,42,0.55)" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M22.5 14.25C21.7 14.25 21 14.95 21 15.75C21 16.55 21.7 17.25 22.5 17.25C23.3 17.25 24 16.55 24 15.75C24 14.95 23.3 14.25 22.5 14.25Z" fill="rgba(15,23,42,0.35)"/>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 3L1.5 8.25L12 13.5L22.5 8.25L12 3Z" fill="#FFFFFF"/>
+  <path d="M5.5 10.2V15.2C5.5 16.1 9 18.5 12 18.5C15 18.5 18.5 16.1 18.5 15.2V10.2L12 13.5L5.5 10.2Z" fill="rgba(255,255,255,0.8)"/>
+</svg>
+"""
+
+# Zero-Asset Organic Multi-Layered Waves Container
+organic_waves = """
+<svg viewBox="0 0 1440 160" style="position:absolute; bottom:0; left:0; width:100%; height:auto; z-index:1; pointer-events:none; min-width:900px;">
+  <path fill="rgba(124, 58, 237, 0.07)" d="M0,96L60,101.3C120,107,240,117,360,112C480,107,600,85,720,80C840,75,960,85,1080,90.7C1200,96,1320,96,1380,96L1440,96L1440,160L1380,160C1320,160,1200,160,1080,160C960,160,840,160,720,160C600,160,480,160,360,160C240,160,120,160,60,160L0,160Z"></path>
+  <path fill="rgba(79, 70, 229, 0.05)" d="M0,128L60,122.7C120,117,240,107,360,96C480,85,600,75,720,80C840,85,960,107,1080,112C1200,117,1320,107,1380,101.3L1440,96L1440,160L1380,160C1320,160,1200,160,1080,160C960,160,840,160,720,160C600,160,480,160,360,160C240,160,120,160,60,160L0,160Z"></path>
 </svg>
 """
 
@@ -205,24 +247,25 @@ st.markdown(
       <p class="hero-subtitle">Estimate math performance from demographics and academic context.</p>
     </div>
   </div>
+  {organic_waves}
 </div>
 """,
     unsafe_allow_html=True,
 )
 
-# --- Main Application Layout ---
+# --- Main Form Block Layout ---
 with st.form("prediction_form"):
     st.markdown(
         """
 <div class="ds-card">
   <h3>Student Profile Information</h3>
-  <div class="helper">Fill in the details below.</div>
+  <div class="helper">Fill in the metrics below to execute the pipeline matrix.</div>
 </div>
 """,
         unsafe_allow_html=True,
     )
 
-    # Cleaned layout framework: Columns styled natively using CSS mapping tokens
+    # Natively structured columns handled smoothly by our advanced horizontal block engines
     left, right = st.columns(2, gap="large")
 
     with left:
@@ -254,9 +297,9 @@ with st.form("prediction_form"):
 
     submit_button = st.form_submit_button(label="Predict Math Score", use_container_width=True)
 
-# --- Prediction Logic ---
+# --- Scaled Prediction Engine Logic ---
 if submit_button:
-    with st.spinner("Analyzing profile and generating prediction..."):
+    with st.spinner("Analyzing parameters and deploying pipeline prediction..."):
         try:
             data = CustomData(
                 gender=gender,
@@ -277,22 +320,23 @@ if submit_button:
             if arr.size == 0:
                 raise ValueError(f"Model returned empty predictions: {results}")
 
+            # Precise extraction of the 0-dimensional scalar float value
             final_score = round(float(arr[0]), 2)
 
             st.markdown(
                 f"""
 <div class="result-card">
   <p class="result-label">Predicted Math Score</p>
-  <p class="result-value">{final_score} <span style="font-size:1.15rem; font-weight:800; color: rgba(15,23,42,0.55);">/ 100</span></p>
+  <p class="result-value">{final_score} <span style="font-size:1.35rem; font-weight:800; color: #7C3AED; -webkit-text-fill-color: #7C3AED; opacity:0.7;">/ 100</span></p>
 </div>
 """,
                 unsafe_allow_html=True,
             )
 
             if final_score > 100:
-                st.info("Note: Depending on the model, predictions can occasionally exceed 100 slightly.")
+                st.info("Note: Depending on your validation metrics, predictions can occasionally scale above 100.")
 
         except FileNotFoundError:
-            st.error("🚨 Missing model files: ensure `artifacts/` contains `model.pkl` and `preprocessor.pkl`.")
+            st.error("🚨 Missing model files: ensure your `artifacts/` tree contains valid serialization components.")
         except Exception as e:
-            st.error(f"⚠️ An error occurred during prediction: {e}")
+            st.error(f"⚠️ An error occurred during pipeline calculation: {e}")
