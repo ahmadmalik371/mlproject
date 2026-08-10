@@ -2,6 +2,15 @@
 
 An end-to-end **machine learning** project that predicts a student's **math score** from demographic and academic features. It includes a complete training pipeline, model comparison with hyper-parameter tuning, and an interactive **Streamlit** web application with a custom mobile-friendly UI.
 
+## 🚀 Live Demo
+
+Try the deployed app:
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://student-score-predictor-ml1.streamlit.app/)
+
+🔗 **https://student-score-predictor-ml1.streamlit.app/**
+
+
 ---
 
 ## 📌 Project Overview
@@ -97,7 +106,7 @@ mlproject/
 ### 1. Clone & set up a virtual environment
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/ahmadmalik371/mlproject.git
 cd mlproject
 python -m venv venv
 
