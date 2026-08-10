@@ -144,8 +144,7 @@ To run it locally instead:
 ```bash
 streamlit run app.py
 ```
-
-Open the printed local URL (default: `http://localhost:8501`), fill in the student profile, and click **Predict Math Score**.
+fill in the student profile, and click **Predict Math Score**.
 
 ---
 
