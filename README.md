@@ -137,6 +137,10 @@ This regenerates the artifacts in the `artifacts/` folder.
 
 ### 4. Run the web app
 
+**Try the live deployed app:** https://student-score-predictor-ml1.streamlit.app/
+
+To run it locally instead:
+
 ```bash
 streamlit run app.py
 ```
