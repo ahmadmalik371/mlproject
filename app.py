@@ -34,6 +34,30 @@ html, body, p, [class*="css"] {
   color: var(--text) !important;
 }
 
+/* Select / input dropdown POPUP menus must stay readable on DESKTOP.
+   Without this, the options list renders on a light background with
+   forced-white text (invisible). Guarantee dark bg + light text. */
+[data-baseweb="popover"], [data-baseweb="popover"] ul,
+[data-baseweb="menu"], [data-baseweb="menu"] ul {
+  background-color: var(--card) !important;
+}
+[data-baseweb="popover"] [role="option"], [data-baseweb="popover"] li,
+[data-baseweb="menu"] [role="option"], [data-baseweb="menu"] li {
+  background-color: transparent !important;
+  color: var(--text) !important;
+}
+[data-baseweb="popover"] [role="option"]:hover, [data-baseweb="popover"] li:hover,
+[data-baseweb="menu"] [role="option"]:hover, [data-baseweb="menu"] li:hover {
+  background-color: rgba(139, 92, 246, 0.35) !important;
+  color: #ffffff !important;
+}
+
+/* Visible placeholders inside inputs */
+input::placeholder, textarea::placeholder {
+  color: var(--muted) !important;
+  opacity: 1;
+}
+
 #MainMenu, footer, header { visibility: hidden; }
 
 .stApp {
